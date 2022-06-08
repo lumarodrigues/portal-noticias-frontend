@@ -47,20 +47,17 @@ export default {
       )
     },
     editNews (id) {
-      debugger
-      axios({
-        method: 'put',
-        url: `http://127.0.0.1:8000/api/noticias/${id}/`
-      }).then(
-        response => { this.news = response.data }
-      )
+      this.$router.push({
+        name: 'Update',
+        params: { id: id }
+      })
     },
     deleteNews (id) {
       axios({
         method: 'delete',
         url: `http://127.0.0.1:8000/api/noticias/${id}/`
       }).then(
-        response => { this.news = response.data }
+        this.loadList
       )
     }
   }

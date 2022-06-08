@@ -30,7 +30,6 @@ export default {
   },
   methods: {
     getNews () {
-      debugger
       if (this.id !== undefined | null) {
         axios({
           method: 'get',
