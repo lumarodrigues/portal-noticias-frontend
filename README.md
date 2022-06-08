@@ -2,22 +2,22 @@
 
 Frontend para o projeto Portal Noticias
 
-## Install the dependencies
+## Instalar as dependências do projeto
 ```bash
 npm install
 ```
 
-### Start the app in development mode (hot-code reloading, error reporting, etc.)
+### Iniciar o projeto no modo de desenvolvimento
 ```bash
 quasar dev
 ```
 
-### Lint the files
+### Rodar o linter
 ```bash
 npm run lint
 ```
 
-### Build the app for production
+### Buildar app para produção
 ```bash
 quasar build
 ```

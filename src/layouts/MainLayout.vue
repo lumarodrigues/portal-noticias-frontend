@@ -52,13 +52,13 @@ const linksList = [
     title: 'Notícias',
     caption: 'Ver todas as notícias',
     icon: 'list',
-    link: ''
+    route: 'Index'
   },
   {
     title: 'Criar post',
     caption: 'Escrever novo post',
-    icon: 'add_circle',
-    link: ''
+    icon: 'note_add',
+    route: 'Form'
   }
 ]
 
