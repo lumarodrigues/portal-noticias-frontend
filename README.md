@@ -1,6 +1,6 @@
-# Portal Noticias (portal-noticias-frontend)
+# Abacate News (portal-noticias-frontend)
 
-Frontend para o projeto Portal Noticias
+Frontend para o projeto Abacate News
 
 ## Instalar as dependências do projeto
 ```bash
