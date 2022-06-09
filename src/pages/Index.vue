@@ -16,31 +16,30 @@
 
           <q-card-section class="col-3 col-md-2" style="display: flex; gap: .5rem; align-items: start; justify-content: end">
             <q-btn flat round class="q-pa-sm" @click="editNews(item.id)" color="info" icon="edit" />
-            <q-btn flat round class="q-pa-sm" @click="alert = true" color="red-10" icon="delete" />
+            <q-btn flat round class="q-pa-sm" @click="callAlert(item.id)" color="red-10" icon="delete" />
           </q-card-section>
         </q-card-section>
-
-        <q-dialog v-model="alert">
-          <q-card>
-            <q-card-section>
-              Confirmar exclusão
-            </q-card-section>
-
-            <q-card-section class="q-pt-none">
-              Deseja mesmo deletar a notícia #{{ item.id }}?
-            </q-card-section>
-
-            <q-card-actions align="right">
-              <q-btn flat @click="deleteNews(item.id)" label="OK" color="primary" v-close-popup />
-            </q-card-actions>
-          </q-card>
-        </q-dialog>
 
         <q-card-section side top class="q-px-md">
           <q-icon name="calendar_month" color="blue" size="xs" class="q-mr-sm" />
           <label caption style="color: #90a4ae">Publicado em: {{ formatDate(item.data_edicao) }}</label>
         </q-card-section>
       </q-card>
+      <q-dialog v-model="dialog">
+        <q-card>
+          <q-card-section>
+            Confirmar exclusão
+          </q-card-section>
+
+          <q-card-section class="q-pt-none">
+            Deseja mesmo deletar a notícia #{{ itemId }}?
+          </q-card-section>
+
+          <q-card-actions align="right">
+            <q-btn flat @click="deleteNews()" label="OK" color="primary" v-close-popup />
+          </q-card-actions>
+        </q-card>
+      </q-dialog>
 
     </q-list>
   </div>
@@ -54,8 +53,8 @@ export default {
   name: 'NewsList',
   setup () {
     return {
-      alert: ref(false),
-      address: ref('')
+      dialog: ref(false),
+      itemId: ref(null)
     }
   },
   data () {
@@ -81,13 +80,17 @@ export default {
         params: { id: id }
       })
     },
-    deleteNews (id) {
+    deleteNews () {
       axios({
         method: 'delete',
-        url: `http://127.0.0.1:8000/api/noticias/${id}/`
+        url: `http://127.0.0.1:8000/api/noticias/${this.itemId}/`
       }).then(r => {
         this.loadList()
       })
+    },
+    callAlert (id) {
+      this.itemId = id
+      this.dialog = true
     },
     formatDate (date) {
       const dateInstance = new Date(date)
